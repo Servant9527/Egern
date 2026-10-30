@@ -4,7 +4,7 @@ description: "显示19台VPS本月上下行流量，数据每2分钟更新，SJC
 scriptings:
 - generic:
     name: VPS流量监控
-    script_url: https://raw.githubusercontent.com/Servant9527/egern/main/vps-traffic-egern.js
+    script_url: https://cdn.jsdelivr.net/gh/Servant9527/egern@main/vps-traffic-egern.js
 
 widgets:
 - name: VPS流量监控
