@@ -1,0 +1,19 @@
+name: IT之家去广告
+description: '过滤IT之家信息流广告和文末广告，自定义移除置顶和轮播图，自定义移除项需在插件配置。'
+author: '可莉🅥'
+icon: 'https://cdn.jsdelivr.net/gh/luestr/IconResource@main/App_icon/120px/IThome.png'
+mitm:
+  hostnames:
+    - napi.ithome.com
+    - api.zuihuimai.com
+    - dat.ruanmei.com
+script:
+  - name: IT之家去广告
+    type: http-response
+    pattern: '(?i)^https:\/\/napi\.ithome\.com\/api\/(news\/indexv2\/iphone\/\d+|topmenu\/getfeeds\?)'
+    requires_body: true
+    script_url: 'https://cdn.jsdelivr.net/gh/mihoyo-typ/KeleeOne@Loon/Script/IThome_remove_ads.js'
+map_local:
+  - pattern: '(?i)^https?:\/\/dat\.ruanmei\.com\/ithome\/money\/acd\.json$'
+    data: ''
+    status_code: 404

@@ -1,0 +1,19 @@
+name: 京东比价
+description: '首次使用需安装慢慢买应用，之后点击进入[我的]页面以捕获Cookie，捕获成功后方可在商品详情页面查看比价内容。'
+author: 'wf021325, githubdulong, mw418'
+icon: 'https://cdn.jsdelivr.net/gh/luestr/IconResource@main/App_icon/120px/JD.png'
+mitm:
+  hostnames:
+    - in.m.jd.com
+    - apapia-sqk-weblogic.manmanbuy.com
+script:
+  - name: 捕获令牌
+    type: http-request
+    pattern: '(?i)^https?:\/\/apapia-sqk-weblogic\.manmanbuy\.com\/baoliao\/center\/menu$'
+    requires_body: true
+    script_url: 'https://cdn.jsdelivr.net/gh/mihoyo-typ/KeleeOne@Loon/Script/JD_Price.js'
+  - name: 京东比价
+    type: http-response
+    pattern: '(?i)^https?:\/\/in\.m\.jd\.com\/product\/graphext\/\d+\.html'
+    requires_body: true
+    script_url: 'https://cdn.jsdelivr.net/gh/mihoyo-typ/KeleeOne@Loon/Script/JD_Price.js'

@@ -1,0 +1,25 @@
+name: 香港抖音去广告
+description: '精简左右侧边栏、移除底栏切换，其余内容后续再完善。'
+author: '可莉🅥'
+icon: 'https://cdn.jsdelivr.net/gh/luestr/IconResource@main/App_icon/120px/TikTok.png'
+rules:
+  - 'AND,((IP-CIDR,101.126.58.201/32,no-resolve),(DEST-PORT,6443)),REJECT'
+  - 'AND,((IP-CIDR,110.249.199.75/32,no-resolve),(DEST-PORT,6443)),REJECT'
+  - 'AND,((IP-CIDR,111.225.147.191/32,no-resolve),(DEST-PORT,6443)),REJECT'
+  - 'AND,((IP-CIDR,111.63.61.101/32,no-resolve),(DEST-PORT,6443)),REJECT'
+  - 'AND,((IP-CIDR,220.243.141.0/32,no-resolve),(DEST-PORT,6443)),REJECT'
+  - 'AND,((OR,((DOMAIN-SUFFIX,bytegecko.com),(DOMAIN-SUFFIX,byteeffecttos.com))),(DOMAIN-KEYWORD,ncdn)),REJECT'
+mitm:
+  hostnames:
+    - aweme.snssdk.com
+    - api5-normal-m.amemv.com
+map_local:
+  - pattern: '(?i)^https:\/\/api5-normal-lq\.amemv\.com\/api\/ad\/'
+    data: ''
+    status_code: 404
+  - pattern: '(?i)^https:\/\/(aweme\.snssdk\.com|api5-normal-m\.amemv\.com)\/api\/ad\/'
+    data: ''
+    status_code: 404
+  - pattern: '(?i)^https:\/\/zlink\.ugsdk\.cn\/ad\/'
+    data: ''
+    status_code: 404

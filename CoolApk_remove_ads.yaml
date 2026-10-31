@@ -1,0 +1,11 @@
+name: 酷安去广告
+description: 过滤酷安广告
+author: 'RuCu6, 可莉🅥'
+icon: 'https://cdn.jsdelivr.net/gh/luestr/IconResource@main/App_icon/120px/CoolApk.png'
+mitm:
+  hostnames:
+    - api.coolapk.com
+map_local:
+  - pattern: '(?i)^https:\/\/api\.coolapk\.com\/v6\/search\?.*type=hotSearch'
+    data: '{}'
+    status_code: 200

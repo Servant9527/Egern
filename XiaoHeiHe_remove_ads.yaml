@@ -1,0 +1,11 @@
+name: 小黑盒去广告
+description: 移除开屏广告和热点板块信息流广告
+author: '可莉🅥'
+icon: 'https://cdn.jsdelivr.net/gh/luestr/IconResource@main/App_icon/120px/XiaoHeiHe.png'
+mitm:
+  hostnames:
+    - api.xiaoheihe.cn
+map_local:
+  - pattern: '(?i)^https:\/\/api\.xiaoheihe\.cn\/account\/get_ads_info_v2'
+    data: '{}'
+    status_code: 200

@@ -1,0 +1,34 @@
+name: Keep去广告
+description: '移除开屏广告、搜索推荐和弹窗广告，精简底栏和首页标签。移除关注推荐、文章相关推荐和信息流中的课程推广。'
+author: '可莉🅥'
+icon: 'https://cdn.jsdelivr.net/gh/luestr/IconResource@main/App_icon/120px/Keep.png'
+rules:
+  - 'DOMAIN,kad.gotokeep.com,REJECT'
+mitm:
+  hostnames:
+    - api.gotokeep.com
+map_local:
+  - pattern: '(?i)^https:\/\/api\.gotokeep\.com\/op-engine-webapp\/v1\/ad\/'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/api\.gotokeep\.com\/search\/v6\/default\/keyword\/list\?'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/api\.gotokeep\.com\/twins\/v4\/feed\/followPage\?'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/api\.gotokeep\.com\/twins\/union\/feed\/function\?'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/api\.gotokeep\.com\/guide-webapp\/v1\/popup\/getPopUp\?'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/api\.gotokeep\.com\/search\/v5\/hotCourse\/list$'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/api\.gotokeep\.com\/search\/v4\/hotHashtag\/list$'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/api\.gotokeep\.com\/search\/v4\/hotword\/list\?'
+    data: '{}'
+    status_code: 200

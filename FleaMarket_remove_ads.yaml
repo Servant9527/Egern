@@ -1,0 +1,30 @@
+name: 闲鱼去广告
+description: '移除开屏广告、商品信息流广告、关注推荐、搜索栏填充词、首页签到入口及悬浮广告，精简我的页面。'
+author: '可莉🅥'
+icon: 'https://cdn.jsdelivr.net/gh/luestr/IconResource@main/App_icon/120px/FleaMarket.png'
+mitm:
+  hostnames:
+    - acs.m.goofish.com
+    - g-acs.m.goofish.com
+map_local:
+  - pattern: '(?i)^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlecommerce\.splash\.ads\/'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.user\.strategy\.list\/'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.item\.recommend\.list\/'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.local\.near\.by\.corner\.info\/'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.item\.buy\.feeds\/'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlemtopsearch\.search\.shade\/'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.playboy\.recommend\/'
+    data: '{}'
+    status_code: 200

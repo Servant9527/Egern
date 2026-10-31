@@ -1,0 +1,33 @@
+name: 前程无忧去广告
+description: '移除开屏广告、弹窗、信息流推广、职位页面推广和各类横幅推广。'
+author: '可莉🅥'
+icon: 'https://cdn.jsdelivr.net/gh/luestr/IconResource@main/App_icon/120px/51Job.png'
+mitm:
+  hostnames:
+    - appapi.51jobapp.com
+    - cupid.51jobapp.com
+map_local:
+  - pattern: '(?i)^https:\/\/appapi\.51jobapp\.com\/api\/market\/get_launch\.php\?'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/cupid\.51jobapp\.com\/open\/operation\/get\/latest\/banner-list\?'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/cupid\.51jobapp\.com\/open\/51job-activities\/secJob\/queryHomeSecondConfigV2\?'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/cupid\.51jobapp\.com\/open\/noauth\/jobs\/detail\/sesame-competitive\/'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/cupid\.51jobapp\.com\/open\/noauth\/jobs\/job-detail\/user-rights\?'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/cupid\.51jobapp\.com\/open\/resume\/strategy\/resume-build\?'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/cupid\.51jobapp\.com\/launch-hub\/open\/noauth\/popUp\/'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/cupid\.51jobapp\.com\/launch-hub\/open\/noauth\/popUp\/getHomePagePopUp\?'
+    data: '{}'
+    status_code: 200

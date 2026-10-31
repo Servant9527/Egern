@@ -1,0 +1,17 @@
+name: 应用安装
+description: 'App Store 低版本应用安装、已购下架应用安装'
+author: githubdulong
+mitm:
+  hostnames:
+    - apple-api.com
+    - xiaobai.app
+script:
+  - name: 应用接口
+    type: http-request
+    pattern: https://apple-api.com
+    requires_body: true
+    script_url: 'https://cdn.jsdelivr.net/gh/githubdulong/Script@master/AppleStoreAPI.js'
+  - name: 应用安装
+    type: http-request
+    pattern: 'https:\/\/xiaobai\.app'
+    script_url: 'https://cdn.jsdelivr.net/gh/githubdulong/Script@master/installapp.js'

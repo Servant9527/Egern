@@ -1,0 +1,23 @@
+name: 'YouTube（music）增强'
+description: '适用于 Youtube & Youtube Music'
+author: Maasea
+mitm:
+  hostnames:
+    - '*.googlevideo.com'
+    - youtubei.googleapis.com
+script:
+  - name: youtube.response
+    type: http-response
+    pattern: '^https:\/\/youtubei\.googleapis\.com\/(youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch|log_event|config))(\?(.*))?$'
+    requires_body: true
+    script_url: 'https://cdn.jsdelivr.net/gh/Maasea/sgmodule@master/Script/Youtube/youtube.response.js'
+  - name: youtube.request.init
+    type: http-request
+    pattern: '^https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&ack.*'
+    requires_body: true
+    script_url: 'https://cdn.jsdelivr.net/gh/Maasea/sgmodule@master/Script/Youtube/youtube.request.js'
+  - name: youtube.request.log_event
+    type: http-request
+    pattern: '^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/log_event'
+    requires_body: true
+    script_url: 'https://cdn.jsdelivr.net/gh/Maasea/sgmodule@master/Script/Youtube/youtube.request.js'

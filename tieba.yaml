@@ -1,0 +1,19 @@
+name: '贴吧去广告(>=iOS15)'
+description: '260106;开屏广告;推荐和吧内帖子列表的直播及广告;详情页直播/关联商品/广告;看图模式广告;首页和帖子详情页右下角悬浮广告;部分吧内的置顶/最新中间的广告/head图片广告/head直播'
+author: app2smile
+rules:
+  - 'RULE-SET,https://cdn.jsdelivr.net/gh/app2smile/rules@master/rule/tieba-ad.list,REJECT-DROP'
+mitm:
+  hostnames:
+    - tiebac.baidu.com
+script:
+  - name: 贴吧json
+    type: http-response
+    pattern: '^https?:\/\/(tiebac|c\.tieba)\.baidu\.com\/(c\/(s\/sync|f\/(ad\/getSplashAd|frs\/(page|threadlist|generalTabList)|pb\/(pic)?page|excellent\/personalized))$|tiebaads\/commonbatch\?)'
+    requires_body: true
+    script_url: 'https://cdn.jsdelivr.net/gh/app2smile/rules@master/js/tieba-json.js'
+  - name: 贴吧proto
+    type: http-response
+    pattern: '^https?:\/\/(tiebac|c\.tieba)\.baidu\.com\/c\/(b\/ad\/adBid|f\/(frs\/(page|threadlist|generalTabList)|ad\/getFeedAd|pb\/page|excellent\/personalized))\?cmd'
+    requires_body: true
+    script_url: 'https://cdn.jsdelivr.net/gh/app2smile/rules@master/js/tieba-proto.js'

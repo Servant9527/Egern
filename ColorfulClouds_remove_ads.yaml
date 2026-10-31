@@ -1,0 +1,28 @@
+name: 彩云天气去广告
+description: '移除首页推广、弹窗、悬浮窗、底栏天气助手和工具箱入口，移除我的页面广告横幅。'
+author: RuCu6
+icon: 'https://cdn.jsdelivr.net/gh/luestr/IconResource@main/App_icon/120px/ColorfulClouds.png'
+rules:
+  - 'DOMAIN,abyss.cyapi.cn,REJECT'
+  - 'DOMAIN,ad.cyapi.cn,REJECT'
+  - 'DOMAIN,gather.colorfulclouds.net,REJECT'
+rewrite:
+  - pattern: '^https:\/\/biz\.cyapi\.cn\/(p\/v1\/entries|p\/v1\/trial_card\/info|v2\/product)'
+    target: reject
+    type: url-rewrite
+  - pattern: '^https:\/\/starplucker\.cyapi\.cn\/v3\/(config\/cypage\/\w+\/conditions|notification\/message_center|operation\/homefeatures)'
+    target: reject
+    type: url-rewrite
+mitm:
+  hostnames:
+    - biz.cyapi.cn
+    - starplucker.cyapi.cn
+    - wrapper.cyapi.cn
+    - api.caiyunapp.com
+    - cdn-w.caiyunapp.com
+script:
+  - name: 彩云天气去广告
+    type: http-response
+    pattern: '^https:\/\/(wrapper\.cyapi\.cn|api\.caiyunapp\.com|cdn-w\.caiyunapp\.com)\/v1\/activity\?'
+    requires_body: true
+    script_url: 'https://cdn.jsdelivr.net/gh/mihoyo-typ/KeleeOne@Loon/Script/ColorfulClouds_remove_ads.js'

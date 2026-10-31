@@ -1,0 +1,16 @@
+name: BoxJs
+description: http://boxjs.com
+author: ChavyLeung
+icon: 'https://cdn.jsdelivr.net/gh/chavyleung/scripts@master/box/icons/BoxJs.png'
+mitm:
+  hostnames:
+    - '%INSERT% boxjs.com'
+    - boxjs.net
+    - '*.boxjs.com'
+    - '*.boxjs.net'
+script:
+  - name: 'Rewrite: BoxJs'
+    type: http-request
+    pattern: '^https?:\/\/(.+\.)?boxjs\.(com|net)'
+    requires_body: true
+    script_url: 'https://cdn.jsdelivr.net/gh/chavyleung/scripts@master/box/chavy.boxjs.js'

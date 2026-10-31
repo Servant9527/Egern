@@ -1,0 +1,62 @@
+name: 淘宝去广告
+description: 过滤淘宝开屏广告
+author: RuCu6
+icon: 'https://cdn.jsdelivr.net/gh/luestr/IconResource@main/App_icon/120px/Taobao.png'
+rules:
+  - 'DOMAIN,adashx.m.taobao.com,REJECT'
+  - 'DOMAIN,ossgw.alicdn.com,REJECT'
+  - 'DOMAIN,ems.youku.com,REJECT'
+  - 'DOMAIN,hudong.alicdn.com,REJECT'
+  - 'DOMAIN,h-adashx.ut.taobao.com,REJECT'
+  - 'DOMAIN,ut.taobao.com,REJECT'
+mitm:
+  hostnames:
+    - acs.m.taobao.com
+    - heic.alicdn.com
+    - guide-acs.m.taobao.com
+    - poplayer.template.alibaba.com
+script:
+  - name: 移除淘宝开屏广告
+    type: http-response
+    pattern: '(?i)^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.taobao\.(cloudvideo\.video\.query|wireless\.home\.splash\.awesome\.get)'
+    requires_body: true
+    script_url: 'https://cdn.jsdelivr.net/gh/mihoyo-typ/KeleeOne@Loon/Script/Taobao_remove_ads.js'
+  - name: 移除淘宝开屏广告
+    type: http-response
+    pattern: '(?i)^https:\/\/poplayer\.template\.alibaba\.com\/\w+\.json'
+    requires_body: true
+    script_url: 'https://cdn.jsdelivr.net/gh/mihoyo-typ/KeleeOne@Loon/Script/Taobao_remove_ads.js'
+map_local:
+  - pattern: '(?i)^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.fliggy\.crm\.screen\.(allresource|predict)'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alibaba\.advertisementservice\.getadv'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alimama\.etao\.config\.query\/.+?etao_advertise'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alimusic\.common\.mobileservice\.startinit'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.etao\.noah\.query\/.+tao_splash'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.film\.mtopadvertiseapi\.queryadvertise'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.o2o\.ad\.gateway\.get'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.taobao\.idle\.home\.welcome'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.trip\.activity\.querytmsresources'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/(?:gw|heic)\.alicdn\.com\/imgextra\/i\d\/\d*\/?[\w!]+-\d-(?:octopus|tps)-(?:1080|1125)-\d{4}\.(?:jpg|png)_(?:1\d{3}|9\d{2})x(?:\d|1\d{3}|9\d{2})q[59]0'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.taobao\.(volvo\.secondfloor\.getconfig|wireless\.home\.newface\.awesome\.get)'
+    data: '{}'
+    status_code: 200

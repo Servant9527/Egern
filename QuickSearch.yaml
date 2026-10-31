@@ -1,0 +1,32 @@
+name: 快捷搜索
+description: '为Safari提供快速切换搜索引擎的能力，在插件列表中点击此插件上的链接查看使用方法。'
+author: '可莉🅥'
+icon: 'https://cdn.jsdelivr.net/gh/luestr/IconResource@main/App_icon/120px/Safari.png'
+rewrite:
+  - pattern: '(?i)^https:\/\/duckduckgo\.com\/\?q=bd\+([^&]+).+'
+    target: 'https://www.baidu.com/s?wd=$1'
+    type: url-rewrite
+  - pattern: '(?i)^https:\/\/duckduckgo\.com\/\?q=bdimg\+([^&]+).+'
+    target: 'https://image.baidu.com/search/index?tn=baiduimage&word=$1'
+    type: url-rewrite
+  - pattern: '(?i)^https:\/\/duckduckgo\.com\/\?q=gimg\+([^&]+).+'
+    target: 'https://www.google.com/search?&tbm=isch&q=$1'
+    type: url-rewrite
+  - pattern: '(?i)^https:\/\/duckduckgo\.com\/\?q=b\+([^&]+).+'
+    target: 'https://www.bing.com/search?q=$1'
+    type: url-rewrite
+  - pattern: '(?i)^https:\/\/duckduckgo\.com\/\?q=wk\+([^&]+).+'
+    target: 'https://zh.wikipedia.org/wiki/$1'
+    type: url-rewrite
+  - pattern: '(?i)^https:\/\/duckduckgo\.com\/\?q=qm\+([^&]+).+'
+    target: 'https://www.qimai.cn/search/index/country/cn/search/$1'
+    type: url-rewrite
+  - pattern: '(?i)^https:\/\/duckduckgo\.com\/\?q=gh\+([^&]+).+'
+    target: 'https://github.com/search?q=$1'
+    type: url-rewrite
+  - pattern: '(?i)^https:\/\/duckduckgo\.com\/\?q=([^&]+).+'
+    target: 'https://www.google.com/search?q=$1'
+    type: url-rewrite
+mitm:
+  hostnames:
+    - duckduckgo.com

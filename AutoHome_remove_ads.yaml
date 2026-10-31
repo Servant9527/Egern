@@ -1,0 +1,107 @@
+name: 汽车之家去广告
+description: '移除开屏广告、各类广告横幅、各类信息流广告、各类弹窗推广、各类浮窗、我的页面广告。'
+author: '可莉🅥'
+icon: 'https://cdn.jsdelivr.net/gh/luestr/IconResource@main/App_icon/120px/AutoHome.png'
+mitm:
+  hostnames:
+    - a.athm.cn
+    - adproxy.autohome.com.cn
+    - apiautoappusc.che168.com
+    - autoapi.autohome.com.cn
+    - cars.app.autohome.com.cn
+    - clientlive.api.autohome.com.cn
+    - club.app.autohome.com.cn
+    - dealer.m.autohome.com.cn
+    - maam.pingan.com.cn
+    - mobile.app.autohome.com.cn
+    - news.app.autohome.com.cn
+    - pcmx.autohome.com.cn
+script:
+  - name: 精简我的页面
+    type: http-response
+    pattern: '(?i)^https:\/\/news\.app\.autohome\.com\.cn\/news_v\d+(?:\.\d+){2}\/news\/homenavigation'
+    requires_body: true
+    script_url: 'https://cdn.jsdelivr.net/gh/mihoyo-typ/KeleeOne@Loon/Script/AutoHome_remove_ads.js'
+  - name: 精简我的页面
+    type: http-response
+    pattern: '(?i)^https:\/\/(a\.athm\.cn\/)?mobile\.app\.autohome\.com\.cn\/platform\/carserver\/((usercenter\/getservicecards)|(carcard\/allcard)|(carcard\/mycardv\d+)|(carcard\/cards))'
+    requires_body: true
+    script_url: 'https://cdn.jsdelivr.net/gh/mihoyo-typ/KeleeOne@Loon/Script/AutoHome_remove_ads.js'
+  - name: 社区广场去广告
+    type: http-response
+    pattern: '(?i)^https:\/\/(a\.athm\.cn\/)?club\.app\.autohome\.com\.cn\/club_v\d+(?:\.\d+){2}\/club\/index\/businessv\d+'
+    requires_body: true
+    script_url: 'https://cdn.jsdelivr.net/gh/mihoyo-typ/KeleeOne@Loon/Script/AutoHome_remove_ads.js'
+  - name: 移除直播浮窗
+    type: http-response
+    pattern: '(?i)^https:\/\/(a\.athm\.cn\/)?cars\.app\.autohome\.com\.cn\/carstreaming\/selectcarportal\/reclist'
+    requires_body: true
+    script_url: 'https://cdn.jsdelivr.net/gh/mihoyo-typ/KeleeOne@Loon/Script/AutoHome_remove_ads.js'
+  - name: 移除报价页面直播内容
+    type: http-response
+    pattern: '(?i)^https:\/\/(a\.athm\.cn\/)?cars\.app\.autohome\.com\.cn\/carstreaming\/selectcarportal\/seriestopwithtagscard'
+    requires_body: true
+    script_url: 'https://cdn.jsdelivr.net/gh/mihoyo-typ/KeleeOne@Loon/Script/AutoHome_remove_ads.js'
+  - name: 移除二手车竖版轮播图
+    type: http-response
+    pattern: '(?i)^https:\/\/(a\.athm\.cn\/)?apiautoappusc\.che168\.com\/apic\/v\d+\/gethomepagefeed'
+    requires_body: true
+    script_url: 'https://cdn.jsdelivr.net/gh/mihoyo-typ/KeleeOne@Loon/Script/AutoHome_remove_ads.js'
+map_local:
+  - pattern: '(?i)^https:\/\/(a\.athm\.cn\/)?mobile\.app\.autohome\.com\.cn\/platform\/carserver\/carcard\/findEquitysV5'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/(a\.athm\.cn\/)?mobile\.app\.autohome\.com\.cn\/platform\/carserver\/carcard\/mycardv6'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/(a\.athm\.cn\/)?mobile\.app\.autohome\.com\.cn\/platform\/carserver\/usercenter\/chat\/gse\/recquery'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/autoapi\.autohome\.com\.cn\/ypttd\/yjc\/web\/mkgt\/act\/seckillInfo'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/(a\.athm\.cn\/)?mobile\.app\.autohome\.com\.cn\/platform\/carserver\/usercenter\/gethotactcards'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/(a\.athm\.cn\/)?mobile\.app\.autohome\.com\.cn\/platform\/carserver\/carcard\/extendedcards'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/(a\.athm\.cn\/)?mobile\.app\.autohome\.com\.cn\/platform\/carserver\/usercenter\/getwashcarlist'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/(a\.athm\.cn\/)?mobile\.app\.autohome\.com\.cn\/platform\/carserver\/usercenter\/getdealertab'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/(a\.athm\.cn\/)?mobile\.app\.autohome\.com\.cn\/platform\/carserver\/usercenter\/getoillist'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/pcmx\.autohome\.com\.cn\/queryCreativeList'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/maam\.pingan\.com\.cn\/maam\/buoy\/getBuoyList\.do'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/news\.app\.autohome\.com\.cn\/cont_v\d+(?:\.\d+){2}\/api\/article\/extenddata'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/adproxy\.autohome\.com\.cn\/AdvertiseService\/AppHandler\.ashx'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/club\.app\.autohome\.com\.cn\/club_v\d+(?:\.\d+){2}\/club\/channelqa\/header'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/dealer\.m\.autohome\.com\.cn\/handler\/other\/getdata\?__action=super\.list'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/autoapi\.autohome\.com\.cn\/arvr-dealercloud-api\/online\/aggregation\/exhibitionList'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/dealer\.m\.autohome\.com\.cn\/handler\/other\/getdata\?__action=vrcore\.list'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/dealer\.m\.autohome\.com\.cn\/handler\/other\/getdata\?__action=platform\.search'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/a\.athm\.cn\/clientlive\.api\.autohome\.com\.cn\/api\/live\/getserieswindowsinfo'
+    data: '{}'
+    status_code: 200

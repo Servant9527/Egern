@@ -1,0 +1,17 @@
+name: 智联招聘去广告
+description: '移除开屏广告、弹窗、职位页面推广和各类横幅推广。此插件需要IPA签名方可使用，App Store用户请勿使用此插件，务必点击下方主页链接查看详细教程。'
+author: '可莉🅥'
+icon: 'https://cdn.jsdelivr.net/gh/luestr/IconResource@main/App_icon/120px/ZhiLianZhaoPin.png'
+rules:
+  - 'URL-REGEX,"^https:\/\/(ask|cgate)\.zhaopin\.com\/operation\/ad\/",REJECT'
+mitm:
+  hostnames:
+    - ask.zhaopin.com
+    - cgate.zhaopin.com
+map_local:
+  - pattern: '(?i)^https:\/\/cgate\.zhaopin\.com\/resumeapi\/resumeCheck\/positionDetailBottomTipCheck$'
+    data: '{}'
+    status_code: 200
+  - pattern: '(?i)^https:\/\/cgate\.zhaopin\.com\/bdp\/commercial\/queryLinkData$'
+    data: ''
+    status_code: 404

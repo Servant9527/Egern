@@ -1,0 +1,24 @@
+name: 脚本转换
+description: https://script.hub
+author: '小白脸, xream, keywos, ckyb'
+mitm:
+  hostnames:
+    - script.hub
+    - '*.script.hub'
+script:
+  - name: 'Script Hub: 前端'
+    type: http-request
+    pattern: '^https?:\/\/script\.hub\/($|edit\/|reload)'
+    script_url: 'https://cdn.jsdelivr.net/gh/Script-Hub-Org/Script-Hub@main/script-hub.js'
+  - name: 'Script Hub: 重写转换'
+    type: http-request
+    pattern: '^https?:\/\/script\.hub\/file\/_start_\/.+type=(?:qx-rewrite|surge-module|loon-plugin|all-module)'
+    script_url: 'https://cdn.jsdelivr.net/gh/Script-Hub-Org/Script-Hub@main/Rewrite-Parser.js'
+  - name: 'Script Hub: 规则集转换'
+    type: http-request
+    pattern: '^https?:\/\/script\.hub\/file\/_start_\/.+type=rule-set'
+    script_url: 'https://cdn.jsdelivr.net/gh/Script-Hub-Org/Script-Hub@main/rule-parser.js'
+  - name: 'Script Hub: 脚本转换'
+    type: http-request
+    pattern: '^https?:\/\/script\.hub\/convert\/'
+    script_url: 'https://cdn.jsdelivr.net/gh/Script-Hub-Org/Script-Hub@main/script-converter.js'

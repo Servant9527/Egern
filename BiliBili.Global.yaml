@@ -1,0 +1,96 @@
+name: 哔哩哔哩全球版
+mitm:
+  hostnames:
+    - biliverse.github.io
+    - www.bilibili.com
+    - search.bilibili.com
+    - app.bilibili.com
+    - app.biliapi.net
+    - api.bilibili.com
+    - api.biliapi.net
+    - grpc.biliapi.net
+script:
+  - name: '📺 BiliBili.Global.bangumi.play.html'
+    type: http-request
+    pattern: '^https?:\/\/www\.bilibili\.com\/bangumi\/play\/(ss|ep)\d+\/?'
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Global/releases/download/v0.9.3/request.bundle.js
+  - name: '📺 BiliBili.Global.viewunite.v1.View.grpc'
+    type: http-request
+    pattern: '^https?:\/\/(grpc|app)\.bili(bili\.com|api\.net)\/bilibili\.app\.viewunite\.v1\.View\/View$'
+    requires_body: true
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Global/releases/download/v0.9.3/request.bundle.js
+  - name: '📺 BiliBili.Global.viewunite.v1.View.grpc'
+    type: http-response
+    pattern: '^https?:\/\/(grpc|app)\.bili(bili\.com|api\.net)\/bilibili\.app\.viewunite\.v1\.View\/View$'
+    requires_body: true
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Global/releases/download/v0.9.3/response.bundle.js
+  - name: '📺 BiliBili.Global.season.json'
+    type: http-request
+    pattern: '^https?:\/\/api\.bili(bili\.com|api\.net)\/pgc\/view\/(v2\/app|web|pc)\/season\?'
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Global/releases/download/v0.9.3/request.bundle.js
+  - name: '📺 BiliBili.Global.season.json'
+    type: http-response
+    pattern: '^https?:\/\/api\.bili(bili\.com|api\.net)\/pgc\/view\/(v2\/app|web|pc)\/season\?'
+    requires_body: true
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Global/releases/download/v0.9.3/response.bundle.js
+  - name: '📺 BiliBili.Global.ep.list.json'
+    type: http-response
+    pattern: '^https?:\/\/api\.bili(bili\.com|api\.net)\/pgc\/view\/(v2\/app|web|pc)\/ep\/list\?'
+    requires_body: true
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Global/releases/download/v0.9.3/response.bundle.js
+  - name: '📺 BiliBili.Global.playerunite.v1.Player.grpc'
+    type: http-request
+    pattern: '^https?:\/\/(grpc|app)\.bili(bili\.com|api\.net)\/bilibili\.app\.playerunite\.v1\.Player\/PlayViewUnite$'
+    requires_body: true
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Global/releases/download/v0.9.3/request.bundle.js
+  - name: '📺 BiliBili.Global.player.v2.PlayURL.grpc'
+    type: http-request
+    pattern: '^https?:\/\/(grpc|app)\.bili(bili\.com|api\.net)\/bilibili\.pgc\.gateway\.player\.v2\.PlayURL\/PlayView$'
+    requires_body: true
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Global/releases/download/v0.9.3/request.bundle.js
+  - name: '📺 BiliBili.Global.player.playurl.json'
+    type: http-request
+    pattern: '^https?:\/\/api\.bili(bili\.com|api\.net)\/pgc\/player\/(api|web)\/playurl(\/html5)?\?'
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Global/releases/download/v0.9.3/request.bundle.js
+  - name: '📺 BiliBili.Global.player.v2.playurl.json'
+    type: http-request
+    pattern: '^https?:\/\/api\.bili(bili\.com|api\.net)\/pgc\/player\/web\/v2\/playurl\?'
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Global/releases/download/v0.9.3/request.bundle.js
+  - name: '📺 BiliBili.Global.search.html'
+    type: http-request
+    pattern: '^https?:\/\/search\.bilibili\.com\/all\?'
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Global/releases/download/v0.9.3/request.bundle.js
+  - name: '📺 BiliBili.Global.search.grpc'
+    type: http-request
+    pattern: '^https?:\/\/(grpc|app)\.bili(bili\.com|api\.net)\/bilibili\.polymer\.app\.search\.v1\.Search\/(SearchAll|SearchByType)$'
+    requires_body: true
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Global/releases/download/v0.9.3/request.bundle.js
+  - name: '📺 BiliBili.Global.search.app.json'
+    type: http-request
+    pattern: '^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/search(\/type)?\?'
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Global/releases/download/v0.9.3/request.bundle.js
+  - name: '📺 BiliBili.Global.search.wbi.json'
+    type: http-request
+    pattern: '^https?:\/\/api\.bili(bili\.com|api\.net)\/x\/web-interface\/wbi\/search\/(all\/v2|type)\?'
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Global/releases/download/v0.9.3/request.bundle.js
+  - name: '📺 BiliBili.Global.search.pc.json'
+    type: http-request
+    pattern: '^https?:\/\/api\.bili(bili\.com|api\.net)\/x\/web-interface\/search\/(all\/v2|type)\?'
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Global/releases/download/v0.9.3/request.bundle.js
+  - name: '📺 BiliBili.Global.space.app.json'
+    type: http-request
+    pattern: '^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/space\?'
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Global/releases/download/v0.9.3/request.bundle.js
+  - name: '📺 BiliBili.Global.space.wbi.json'
+    type: http-request
+    pattern: '^https?:\/\/api\.bili(bili\.com|api\.net)\/x\/space\/wbi\/acc\/info\?'
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Global/releases/download/v0.9.3/request.bundle.js
+  - name: '📺 BiliBili.Global.space.pc.json'
+    type: http-request
+    pattern: '^https?:\/\/api\.bili(bili\.com|api\.net)\/x\/space\/acc\/info\?'
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Global/releases/download/v0.9.3/request.bundle.js
+map_local:
+  - pattern: '^https:\/\/(?:biliverse\.github\.io|app\.bilibili\.com)\/api\/Global(?:\?.*)?$'
+    data: https://gh-proxy.com/https://github.com/Biliverse/Global/releases/download/v0.9.3/BiliBili.Global.boxjs.json
+    data_type: file
+    status_code: 200

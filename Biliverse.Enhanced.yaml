@@ -1,0 +1,64 @@
+name: Biliverse增强
+mitm:
+  hostnames:
+    - biliverse.github.io
+    - app.bilibili.com
+    - app.biliapi.net
+    - grpc.biliapi.net
+script:
+  - name: PreferencePanes.API
+    type: http-request
+    pattern: '^https:\/\/(?:biliverse\.github\.io|app\.bilibili\.com)\/api\/(?:get|set|delete)(?:\?.*)?$'
+    requires_body: true
+    script_url: https://gh-proxy.com/https://github.com/NSNanoCat/PreferencePanes/releases/latest/download/api.js
+  - name: '📺 Biliverse.Enhanced.x.resource.show.tab.v2'
+    type: http-response
+    pattern: '^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/resource\/show\/tab\/v2\?'
+    requires_body: true
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Enhanced/releases/download/v0.6.2/response.bundle.js
+  - name: '📺 Biliverse.Enhanced.show.v1.Mixture.RegionShortcut.request.grpc'
+    type: http-request
+    pattern: '^https?:\/\/(grpc|app)\.bili(bili\.com|api\.net)\/bilibili\.app\.show\.v1\.Mixture\/RegionShortcut$'
+    requires_body: true
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Enhanced/releases/download/v0.6.2/request.bundle.js
+  - name: '📺 Biliverse.Enhanced.show.v1.Mixture.RegionList.response.grpc'
+    type: http-response
+    pattern: '^https?:\/\/(grpc|app)\.bili(bili\.com|api\.net)\/bilibili\.app\.show\.v1\.Mixture\/RegionList$'
+    requires_body: true
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Enhanced/releases/download/v0.6.2/response.bundle.js
+  - name: '📺 Biliverse.Enhanced.x.v2.account.mine'
+    type: http-response
+    pattern: '^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/account\/mine(\/ipad)?\?'
+    requires_body: true
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Enhanced/releases/download/v0.6.2/response.bundle.js
+  - name: '📺 Biliverse.Enhanced.x.v2.region.index'
+    type: http-response
+    pattern: '^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/region\/index\?'
+    requires_body: true
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Enhanced/releases/download/v0.6.2/response.bundle.js
+  - name: '📺 Biliverse.Enhanced.x.v2.channel.region.list'
+    type: http-response
+    pattern: '^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/channel\/region\/list\?'
+    requires_body: true
+    script_url: https://gh-proxy.com/https://github.com/Biliverse/Enhanced/releases/download/v0.6.2/response.bundle.js
+map_local:
+  - pattern: '^https:\/\/app\.bilibili\.com\/settings\/(?:\?[^#]*)?$'
+    data: https://gh-proxy.com/https://github.com/NSNanoCat/PreferencePanes/releases/latest/download/home.html
+    data_type: file
+    status_code: 200
+  - pattern: '^https:\/\/app\.bilibili\.com\/settings\/theme\.css(?:\?[^#]*)?$'
+    data: https://biliverse.github.io/settings/theme.css
+    data_type: file
+    status_code: 200
+  - pattern: '^https:\/\/app\.bilibili\.com\/settings\/home\.json(?:\?[^#]*)?$'
+    data: https://biliverse.github.io/settings/home.json
+    data_type: file
+    status_code: 200
+  - pattern: '^https:\/\/app\.bilibili\.com\/settings\/bridge\.mjs(?:\?[^#]*)?$'
+    data: https://biliverse.github.io/settings/bridge.mjs
+    data_type: file
+    status_code: 200
+  - pattern: '^https:\/\/(?:biliverse\.github\.io|app\.bilibili\.com)\/api\/Enhanced(?:\?.*)?$'
+    data: https://gh-proxy.com/https://github.com/Biliverse/Enhanced/releases/download/v0.6.2/Biliverse.Enhanced.PreferencePanes.json
+    data_type: file
+    status_code: 200
